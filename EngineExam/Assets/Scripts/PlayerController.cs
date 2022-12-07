@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+	public static PlayerController instance;
+
 	Camera cam;
+	public float cameraSpeed = 10;
+	public float invertValue = 1;
 
 	float xView, yView;
 
 	public GameObject bullet;
+	private void Awake()
+	{
+		if (!instance)
+		{
+			instance = this;
+		}
+		else
+		{
+			Destroy(this);
+		}
+	}
 	public void Start()
 	{
 		cam = GetComponentInChildren<Camera>();
@@ -24,13 +39,13 @@ public class PlayerController : MonoBehaviour
 
 
 		if (Input.GetKey(KeyCode.LeftArrow))
-			yView -= Time.deltaTime * 8;
+			yView -= Time.deltaTime * cameraSpeed;
 		if (Input.GetKey(KeyCode.RightArrow))
-			yView += Time.deltaTime * 8;
+			yView += Time.deltaTime * cameraSpeed;
 		if (Input.GetKey(KeyCode.UpArrow))
-			xView -= Time.deltaTime * 8;
+			xView -= Time.deltaTime * cameraSpeed * invertValue;
 		if (Input.GetKey(KeyCode.DownArrow))
-			xView += Time.deltaTime * 8;
+			xView += Time.deltaTime * cameraSpeed * invertValue;
 
 		yView = Mathf.Clamp(yView, -20, 20);
 		xView = Mathf.Clamp(xView, -50, 50);
