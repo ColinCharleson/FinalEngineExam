@@ -6,7 +6,7 @@ public class DuckMovement : MonoBehaviour
 {
     Rigidbody rb;
     float startHeight;
-    Vector3 flapforce = new Vector3(0.2f,0.5f,0f);
+    Vector3 flapforce = new Vector3(0.4f,0.7f,0f);
     // Start is called before the first frame update
     void Start()
     {
